@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+UUID_FILE=/var/lib/pkgstats-cn/uuid
+URL=https://archlinuxcn.lilydjwg.me/stats
+
+get_uuid () {
+  if [[ ! -e $UUID_FILE ]]; then
+    uuid=$(uuidgen)
+    echo -n "$uuid" > $UUID_FILE
+    echo -n "$uuid"
+  else
+    cat $UUID_FILE
+  fi
+}
+
+submit_data () {
+  curl -sS -T - $URL <<EOF
+UUID: $(get_uuid)
+Packages:
+$(pacman -Qq | sed "s/^/- /")
+EOF
+}
+
+submit_data

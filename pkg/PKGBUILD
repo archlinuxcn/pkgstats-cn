@@ -1,0 +1,26 @@
+# Maintainer: Jiachen Yang <farseerfc@archlinuxcn.org>
+
+_pkgname=pkgstats-cn
+pkgname=${_pkgname}-git
+pkgver=r7.1c677a2
+pkgrel=1
+pkgdesc='Submit a list of installed packages to the Arch Linux CN'
+arch=('any')
+url='https://www.archlinuxcn.org'
+license=('GPL')
+depends=('bash' 'curl' 'pacman' 'sed' 'coreutils' 'systemd' 'awk' 'grep')
+source=('git+https://github.com/archlinuxcn/pkgstats-cn')
+sha512sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgname"
+  ( set -o pipefail
+    git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  )
+}
+
+package() {
+    install -D -m755 ${srcdir}/${_pkgname}/pkgstats-cn ${pkgdir}/usr/bin/pkgstats-cn
+    install -dm755 ${pkgdir}/var/lib/pkgstats-cn
+}

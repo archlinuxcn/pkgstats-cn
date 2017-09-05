@@ -1,0 +1,9 @@
+# Arch Linux Packaging
+pkg/*
+!pkg/PKGBUILD
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+

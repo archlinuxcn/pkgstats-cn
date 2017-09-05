@@ -6,6 +6,7 @@ topdir = os.path.dirname(os.path.abspath(__file__))
 
 # tmpl_dir = os.path.join(topdir, 'tmpl')
 static_dir = os.path.join(topdir, 'static')
+store_dir = os.path.join(topdir, 'store')
 
 import tornado.web
 from tornado.options import define, options
@@ -14,7 +15,7 @@ from tornado.httpserver import HTTPServer
 import handlers
 
 routers = [
-  (r'/stats', handlers.StatsHandler),
+  (r'/stats', handlers.StatsHandler, {'store_path': store_dir}),
   # TODO: query page
   (r'/static/(.*)', tornado.web.StaticFileHandler, {'path': static_dir}),
 ]

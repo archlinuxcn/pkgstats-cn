@@ -24,6 +24,12 @@
 deps
 ----
 
-* [ ] util-linux
-* [ ] pacman
-* [ ] curl
+* util-linux
+* curl
+* pacman
+
+server deps
+---
+* python3
+* python-tornado
+* python-yaml

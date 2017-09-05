@@ -26,6 +26,7 @@ class StatsHandler(tornado.web.RequestHandler):
     data = load(data)
     # CF or nginx
     ip = self.request.headers.get(
+      # TODO: check remote_ip
       'Cf-Connecting-IP',
       self.request.headers.get(
         'X-Forwarded-For',

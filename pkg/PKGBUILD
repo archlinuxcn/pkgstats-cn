@@ -11,6 +11,7 @@ license=('GPL')
 depends=('bash' 'curl' 'pacman' 'sed' 'coreutils' 'systemd' 'awk' 'grep')
 source=('git+https://github.com/archlinuxcn/pkgstats-cn')
 sha512sums=('SKIP')
+install=${_pkgname}.install
 
 pkgver() {
   cd "$_pkgname"
@@ -22,5 +23,7 @@ pkgver() {
 
 package() {
     install -D -m755 ${srcdir}/${_pkgname}/pkgstats-cn ${pkgdir}/usr/bin/pkgstats-cn
+    install -D -m644 ${srcdir}/${_pkgname}/pkgstats-cn.timer ${pkgdir}/usr/lib/systemd/system/pkgstats-cn.timer
+    install -D -m644 ${srcdir}/${_pkgname}/pkgstats-cn.service ${pkgdir}/usr/lib/systemd/system/pkgstats-cn.service
     install -dm755 ${pkgdir}/var/lib/pkgstats-cn
 }

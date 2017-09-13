@@ -1,6 +1,7 @@
 # Arch Linux Packaging
 pkg/*
 !pkg/PKGBUILD
+!pkg/pkgstats-cn.install
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

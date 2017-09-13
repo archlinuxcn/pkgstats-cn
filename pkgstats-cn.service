@@ -1,0 +1,7 @@
+[Unit]
+Description=Report task for pkgstats-cn
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/pkgstats-cn

@@ -1,0 +1,6 @@
+[Unit]
+Description=Report timer for pkgstats-cn
+
+[Timer]
+OnCalendar=weekly
+Persistent=true

@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+_UUID_FILE=/var/lib/pkgstats-cn/uuid
+
+post_install() {
+	echo "Generating UUID in $_UUID_FILE"
+	uuidgen > $_UUID_FILE
+}
+
+post_upgrade() {
+	if [[ ! -e $_UUID_FILE ]]; then
+		post_install
+	else
+		echo "Reusing UUID in $_UUID_FILE"
+	fi
+}
+
+post_remove(){
+	echo "Removing $_UUID_FILE"
+	rm $_UUID_FILE
+}
